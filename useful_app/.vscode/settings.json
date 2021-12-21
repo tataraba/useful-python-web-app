@@ -1,0 +1,26 @@
+{
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${env:PYTHONPATH};${workspaceFolder}/src"
+    },
+    "terminal.integrated.env.osx": {
+        "PYTHONPATH": "${workspaceFolder}"
+    },
+    "terminal.integrated.env.linux": {
+        "PYTHONPATH": "${workspaceFolder}"
+    },
+    "python.autoComplete.extraPaths": [
+        "src"
+    ],
+    "python.analysis.extraPaths": [
+        "src"
+    ],
+    "python.envFile": "${workspaceFolder}/.env",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "editor.semanticHighlighting.enabled": "configuredByTheme",
+    "python.terminal.activateEnvironment": true,
+    "python.envFile": "${workspaceFolder}/.env",
+    "[python]": {
+        "editor.codeActionsOnSave": {"source.organizeImports": true},
+    }
+
+}
