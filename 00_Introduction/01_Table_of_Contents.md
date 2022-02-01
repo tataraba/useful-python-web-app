@@ -36,4 +36,4 @@ Use this page to navigate between sections.
 
 |  |   | |
 |:---|---|---:|
-|  [PREV (Overview)](00_Overview.md) |\|| [NEXT (Sample App Layout)](../01_App_Stucture/1.1_Structure_Patterns.md)   |
+|  [PREV (Overview)](00_Overview.md) || [NEXT (Sample App Layout)](../01_App_Stucture/1.1_Structure_Patterns.md)   |
