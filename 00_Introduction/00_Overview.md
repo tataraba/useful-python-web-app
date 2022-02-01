@@ -19,3 +19,5 @@ If you're a beginner in Python, it might feel like you're being thrown in the _d
 Please do not think of these topics as anything resembling "best practices" or "production tested" design patterns. These observations are from the perspective of someone who wrote their first line of Python code at the end of 2018 (without prior development experience) and plugged away at learning the language in snippets during my spare time.
 
 It is likely that there are some errors or oddities in the code, but keep in mind that this all comes from a genuine desire to learn and grow, and provides you an opportunity to go beyond the general guardrails provided here.
+
+[NEXT (Table of Contents)](01_Table_of_Contents.md)
