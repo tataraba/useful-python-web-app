@@ -1,6 +1,6 @@
 # Build a Useful Python Web Application
 
-Hi. I started learning Python at the end of 2018 with hardly any programming background and just enough curiosity to get my feet wet. A few years later, after a couple of on-again, off-again stints, I decided to build a blog called [Python By Night](https://www.pythonbynight.com) to talk about the what I've learned.
+Hi. I started learning Python at the end of 2018 with hardly any programming background and just enough curiosity to get my feet wet. A few years later, after a couple of on-again, off-again stints, I decided to build a blog called [Python By Night](https://www.pythonbynight.com) to write about the what I learned along the way.
 
 Keep in mind that this happened outside of "work hours", as my day job, family, and hobbies take up the majority of my time. But if you're here, chances are you're on a similar path, and I want to encourage you to keep going.
 
@@ -13,7 +13,9 @@ Well, this mostly started out as something for myself. I know, right? Why go thr
 
 In actuality, I hope this is more mutually beneficial. As for myself, it has forced me to focus and solidify a lot of the concepts I may have glossed over as I was building *Python By Night*.
 
-This is also for you if you want to move beyond the sense of being a "beginner" at Python. Have you often found yourself in a redundant pattern of finishing tutorial after tutorial without finding your footing as to where to go next?. Have you built Python scripts that do cool things, but aren't quite sure what to do with them next?
+This is also for you if you want to move beyond the sense of being a "beginner" with Python.
+
+Have you often found yourself in a redundant pattern of finishing tutorial after tutorial without finding your footing as to where to go next? Have you built Python scripts that do cool things, but aren't quite sure what to do with them next?
 
 This might be a good place to put your ideas into action by building and deploying a functional web application.
 
