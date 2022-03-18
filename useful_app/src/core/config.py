@@ -56,7 +56,7 @@ class GlobalConfig(BaseSettings):
         return fastapi_kwargs
 
     class Config:
-        env_file = APP_DIRECTORY / ".env"
+        env_file = APP_DIRECTORY.parent / ".env"
         env_file_encoding = "utf-8"
 
 class DevConfig(GlobalConfig):
@@ -106,3 +106,5 @@ def get_app_settings() -> Union[DevConfig, PrdConfig]:
     """
 
     return settings
+
+print(settings.__repr__())

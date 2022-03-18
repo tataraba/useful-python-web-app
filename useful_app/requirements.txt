@@ -1,0 +1,4 @@
+fastapi
+beanie
+uvicorn
+pydantic[dotenv]
