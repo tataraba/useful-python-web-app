@@ -1,19 +1,19 @@
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Union
 from functools import lru_cache
 from pathlib import Path
 
 from pydantic import BaseModel, BaseSettings, Field
 
 
-APP_DIR = Path(__file__).parent.parent
-
+APP_DIRECTORY = Path(__file__).parent.parent
+print(APP_DIRECTORY)
 
 class AppConfig(BaseModel):
     """Application configuration using pydantic `BaseModel`. 
     Will be accessed as `more_settings` within the application.
     """
 
-    title: str = "For Real App"
+    title: str = "App4Realz"
     version: str = "0.1.0"
     docs_url: str = "/docs"
     redoc_url: str = "/redoc"
@@ -26,8 +26,13 @@ class GlobalConfig(BaseSettings):
     """
 
     more_settings: AppConfig = AppConfig()
+    APP_DIR: Path = APP_DIRECTORY
+    
 
-    SECRET_KEY: str = "secret_defined_in_env"
+    ENV_STATE: Optional[str] = Field(None, env="ENV_STATE")
+    DISABLE_DOCS: bool = False
+
+    SECRET_KEY: str = "overriden_by_dotenv_value"
 
     MONGO_SCHEME: Optional[str] = None
     MONGO_HOST: Optional[str] = None
@@ -39,7 +44,7 @@ class GlobalConfig(BaseSettings):
     @property   # Optional - makes loading values to FastAPI easier
     def fastapi_kwargs(self) -> Dict[str, str]:
         fastapi_kwargs = self.more_settings.dict()
-        if self.DISABLE_DOCS:     # Disable FastAPI docs - for production
+        if self.DISABLE_DOCS:     # Disable FastAPI docs when in prd
             fastapi_kwargs.update(
                 {
                     "docs_url": None,
@@ -51,7 +56,7 @@ class GlobalConfig(BaseSettings):
         return fastapi_kwargs
 
     class Config:
-        env_file = APP_DIR / ".env"
+        env_file = APP_DIRECTORY / ".env"
         env_file_encoding = "utf-8"
 
 class DevConfig(GlobalConfig):
@@ -72,6 +77,11 @@ class PrdConfig(GlobalConfig):
 
 
 class FactoryConfig:
+    """Callable class. Will load `DevConfig` or `PrdConfig`
+    depending on the `ENV_STATE` set in the `GlobalConfig`
+    class.
+    """
+
     def __init__(self, env_state: Optional[str]):
         self.env_state = env_state
 
@@ -88,10 +98,11 @@ settings = FactoryConfig(GlobalConfig().ENV_STATE)()
 
 
 @lru_cache()
-def get_app_settings() -> DevConfig | PrdConfig:
+def get_app_settings() -> Union[DevConfig, PrdConfig]:
     """Returns a cached instance of the settings (config) object.
-
-    To change env variable and reset cache during testing, use the 'lru_cache'
-    instance method 'get_app_settings.cache_clear()'."""
+    To change env variable and reset cache during 
+    testing, use the 'lru_cache' instance method 
+    'get_app_settings.cache_clear()'.
+    """
 
     return settings

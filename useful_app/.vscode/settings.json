@@ -9,10 +9,12 @@
         "PYTHONPATH": "${workspaceFolder}"
     },
     "python.autoComplete.extraPaths": [
-        "src"
+        "src",
+        "useful_app/src"
     ],
     "python.analysis.extraPaths": [
-        "src"
+        "src",
+        "useful_app/src"
     ],
     "python.envFile": "${workspaceFolder}/.env",
     "terminal.integrated.defaultProfile.windows": "PowerShell",

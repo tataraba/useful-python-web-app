@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "useful_app/src",
+        "useful_app",
+        "useful_app/src/Scripts"
+    ]
+}
