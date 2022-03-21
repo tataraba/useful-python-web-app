@@ -12,26 +12,30 @@ settings = get_app_settings()
 class DataBase(BaseSettings):
     """Utility class to define mongodb settings."""
 
-    MONGO_DB_URI: Optional[AnyUrl] = None  # include valid URI directly
-    client: AsyncIOMotorClient = None   # attribute for motor client
+    MONGO_DB_URI: Optional[AnyUrl] = None  # insert URI directly 
 
-    @validator("MONGO_DB_URI", pre=True)  # if no URI given, bulid from settings
+    @validator("MONGO_DB_URI", pre=True, check_fields=False)
     def db_is_valid(cls, v):
-        if isinstance(v, str):
+        if isinstance(v, AnyUrl):
             return v
-        return AnyUrl.build(
-            scheme=settings.MONGO_SCHEME,
-            user=settings.MONGO_USER,
-            password=settings.MONGO_PASS,
-            host=settings.MONGO_HOST,
-        )
+        try:
+            return AnyUrl.build(
+                scheme=settings.MONGO_SCHEME,
+                user=settings.MONGO_USER,
+                password=settings.MONGO_PASS,
+                host=settings.MONGO_HOST,
+                path=f"/{settings.MONGO_DB}",
+                query="retryWrites=true&w=majority"
+            )
+        except Exception:
+            raise AttributeError(v)
 
 
 async def initialize_db() -> None:
     """Initialize the database."""
     db = DataBase()  # create instance of DataBase
     
-    auth_name = settings.MONGE_AUTH_NAME  # auth name used to log into mongo
+    auth_name = settings.MONGO_AUTH_NAME  # auth name used to log into mongo
     db_name = settings.MONGO_DB       # database name
     URI = f"{db.MONGO_DB_URI}/admin?authSource={auth_name}"
     
